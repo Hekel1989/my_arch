@@ -1,15 +1,28 @@
 #!/bin/bash
 
+set -e  # Exit immediately if a command exits with a non-zero status.
+
 echo "Setting up CachyOS repos..."
+
+# Install expect if not already installed
+sudo pacman -S --noconfirm expect
+
 curl https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz
 tar xvf cachyos-repo.tar.xz
 cd cachyos-repo
-yes | sudo ./cachyos-repo.sh --no-confirm
+
+# Use expect to automate responses
+expect << EOF
+spawn sudo ./cachyos-repo.sh
+expect {
+    "y/N" { send "y\r"; exp_continue }
+    "Y/n" { send "y\r"; exp_continue }
+    "y/n" { send "y\r"; exp_continue }
+    eof
+}
+EOF
+
 cd ..
 rm -rf cachyos-repo cachyos-repo.tar.xz
+
 echo "CachyOS repos setup completed."
-
-
-curl https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz
-tar xvf cachyos-repo.tar.xz && cd cachyos-repo
-sudo ./cachyos-repo.sh
