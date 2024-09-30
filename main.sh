@@ -6,7 +6,7 @@
 run_script() {
     script_name=$1
     echo "Executing $script_name..."
-    curl -s "https://raw.githubusercontent.com/yourusername/yourrepo/main/$script_name" | bash
+    curl -s "https://raw.githubusercontent.com/Hekel1989/my_arch/main/$script_name" | bash
     echo "$script_name completed."
     echo
 }
