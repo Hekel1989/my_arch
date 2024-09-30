@@ -8,6 +8,6 @@ echo "Installing CachyOS Pacman..."
 sudo pacman -S --noconfirm yay
 
 # Install pacman using yay, selecting option 2
-echo "2" | yay -S pacman
+echo "2" | yay pacman
 
 echo "CachyOS Pacman installation completed."
