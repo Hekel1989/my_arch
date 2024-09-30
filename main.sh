@@ -13,6 +13,7 @@ run_script() {
 
 # Execute all scripts in order
 run_script "cachyos_repos.sh"
+run_script "install_cachyos_pacman.sh"
 run_script "chaotic_aur.sh"
 run_script "cachyos_kernel.sh"
 run_script "update_grub.sh"
